@@ -17,3 +17,8 @@
 .d_flex{
     display: flex;
 }
+.flex_wrap{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

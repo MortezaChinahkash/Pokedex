@@ -14,11 +14,19 @@ header{
 }
 .logos_container{
     width: 100%;
-    
 }
 .input{
     margin-bottom: 20px;
 }
 .content{
     background-color: #3498db;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.poke_card{
+    width: 300px;
+    height: 400px;
+    background-color: #1e973d;
+    margin: 10px;
 }
