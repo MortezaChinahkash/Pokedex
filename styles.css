@@ -1,0 +1,24 @@
+body{
+    margin: 0;
+}
+header{
+    background-color: #2c3e50;
+}
+.poke_logo{
+    width: 150px;
+    height: 150px;
+}
+.poke_font{
+    width: 200px;
+    filter: invert(18%) sepia(51%) saturate(6473%) hue-rotate(349deg) brightness(88%) contrast(88%);
+}
+.logos_container{
+    width: 100%;
+    
+}
+.input{
+    margin-bottom: 20px;
+}
+.content{
+    background-color: #3498db;
+}
