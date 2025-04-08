@@ -8,16 +8,16 @@ async function fetchUrls() {
         let response = await fetch(url)
         let currentJSON = await response.json();
         pokemonArray.push(currentJSON)
-        renderPkmCard(currentJSON)
     }
+    renderPkmCard()
 }
 
-function renderPkmCard(currentJSON){
+function renderPkmCard(){
     let pkmCardsContainer = document.getElementById("content")
     pkmCardsContainer.innerHTML = "";
-    for (let i = 0; i < currentJSON.length; i++) {
-        console.log(currentJSON);
-        
+    for (let i = 0; i < pokemonArray.length; i++) {
+        pkmCardsContainer.innerHTML += `<div class="poke_card"></div>`
     }
+    console.log(pokemonArray)
 }
 
