@@ -1,5 +1,5 @@
 let startIndex = 1;
-let lastIndex = 20;
+let lastIndex = 21;
 let pokemonArray = [];
 
 async function fetchUrls() {
@@ -17,8 +17,9 @@ function renderPkmCard(){
     pkmCardsContainer.innerHTML = "";
     for (let i = 0; i < pokemonArray.length; i++) {
         let typeID = `type-${i}`
+        let pokeCardIndex = `pokeCard${i}`
         pkmCardsContainer.innerHTML += `
-        <div class="poke_card">
+        <div id="${pokeCardIndex}" class="poke_card">
             <p>ID:  #${pokemonArray[i].id}</p>
             <h3>${pokemonArray[i].name}</h3>
             <img src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
@@ -26,14 +27,17 @@ function renderPkmCard(){
         </div>`
         let typeContainer = document.getElementById(typeID)
         for (let j = 0; j < pokemonArray[i].types.length; j++) {
+            let pokeType = pokemonArray[i].types[j].type.name
+            let pokeTypeBg = pokemonArray[i].types[0].type.name
             typeContainer.innerHTML += `
-            <p>${pokemonArray[i].types[j].type.name}</p>`
+            <p>${pokeType}</p>`
+            addTypeBg(pokeTypeBg, pokeCardIndex)
         }
     }
 }
 
 function addMorePokemon() {
-    lastIndex += 20
-    fetchUrls()
+    startIndex = lastIndex;
+    lastIndex += 20;
+    fetchUrls();
 }
-

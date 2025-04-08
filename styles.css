@@ -34,6 +34,7 @@ header {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 5px;
 }
 .poke_card:hover {
   transform: translateY(-5px);
@@ -53,12 +54,13 @@ header {
 }
 .poke_card p {
   font-size: 14px;
-  color: #666;
+  color: #333333;
   margin: 0;
 }
 .type_text p {
   font-size: 14px;
-  color: #666;
+  color: #1b1b1b;
   margin: 0;
   text-transform: capitalize;
+  font-weight: bold;
 }
