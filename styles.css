@@ -1,13 +1,20 @@
 body {
   margin: 0;
   position: relative;
+  overflow-x: hidden;
 }
 header {
-  background-color: #2c3e50;
   position: sticky;
-  top: 0;
-  z-index: 10000;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #ddd, #aaa); /* Metallic/Silber Look */    color: white;
+    text-align: center;
+    border-bottom: 6px solid black;
+    border-top: 6px solid black;
+    box-shadow: none;
+    z-index: 10000;
 }
+
 .poke_logo {
   width: 75px;
   height: fit-content;
@@ -113,6 +120,9 @@ header {
     left: 130%;
   }
 }
+.show_more{
+  margin: 20px;
+}
 .input {
   font-size: 12px;
   padding: 10px 15px;
@@ -138,3 +148,21 @@ header {
   gap: 10px;
   margin: 20px;
 }
+.retro-footer {
+  background: linear-gradient(to top, #aaa, #ddd); /* Umgekehrter Verlauf zum Header */
+  color: #111;
+  padding: 16px 20px;
+  text-align: center;
+  border-top: 4px solid #333;
+  font-family: monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+}
+.pl_btm{
+  margin-right: 10px;
+}
+.retro-footer p {
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px #fff;
