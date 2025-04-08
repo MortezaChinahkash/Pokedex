@@ -13,18 +13,20 @@
 <body onload="fetchUrls()">
     <header>
         <div class="flex_column flex_y_center">
-            <div class="d_flex logos_container">
+            <div class="d_flex logos_container flex_y_center">
                 <img class="poke_logo flex_y_center" src="assets/png/PokeLogo.png" alt="Bild vom Pokedex">
                 <img class="poke_font flex_y_center" src="assets/png/PokeFont.svg" alt="Pokedex Schriftzug">
             </div>
-            <div class="input">
-                <input type="text" placeholder="Gebe einen Pokemon Namen ein">
-                <button>Suchen</button>
+            <div class="search-container">
+                <input class="input" type="text" placeholder="Search Pokemon... ">
+                <button class="btn">Search</button>
             </div>
         </div>
     </header>
     <div class="content flex_x_center" id="content"></div>
-    <button onclick="addMorePokemon()">Show More</button>
+    <div class="content flex_x_center">
+    <button class="btn" onclick="addMorePokemon()">Show More</button>
+    </div>
     <footer>
 
     </footer>
