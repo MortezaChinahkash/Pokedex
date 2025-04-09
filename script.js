@@ -17,7 +17,11 @@ function updateOverlay(i, pokeTypeBg) {
   dialogueWindow.innerHTML = `
             <div class="overlay_innerwindow" id="overlayInnerWindow">
                 <div class="overlay_header">
-                    <p>test<p>
+                <div class="d_flex">
+                    <div onclick="renderGeneralStats(${i})" class="btn overlay_btn">General stats</div>
+                    <div class="btn overlay_btn">HP</div>
+                    <div class="btn overlay_btn">Attacks</div>
+                </div>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
                 </div>
                 <div class="pokemon_info">
@@ -132,4 +136,12 @@ function addTypeBgOverlay(overlayBg, pokeTypeBg) {
   overlayBg.style.backgroundSize = "cover";
   overlayBg.style.backgroundRepeat = "no-repeat";
   overlayBg.style.backgroundPosition = "center";
+}
+function renderGeneralStats(i){
+   let statsContainer = document.getElementById("differentStats")
+   statsContainer.innerHTML = "";
+   statsContainer.innerHTML += `
+   
+   `
+
 }
