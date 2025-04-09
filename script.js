@@ -51,18 +51,22 @@ function renderOverlay(i){
     function updateOverlay(i) {
             let dialogueWindow = document.getElementById("dialogueWindow");
             dialogueWindow.innerHTML = `
+            
             <div class="overlay_innerwindow" id="overlayInnerWindow">
                 <div class="overlay_header">
                     <h1>${pokemonArray[i].name}</h1>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
                 </div>
-                <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
-                <div class="navigation_button d_flex flex_y_center">
+                <div class="pokemon_card_bg">
+                    <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
+                </div>
+                    <div class="navigation_button d_flex flex_y_center">
                     <button onclick="previousPkmn(${i})" class="button_leftright"> <- </button>
                     <p>${i +1}/${pokemonArray.length}</p>
                     <button onclick="nextPkmn(${i})" class="button_leftright"> -> </button>
                 </div>
-            </div>`;
+            </div>
+            `;
     }
 
 function closeOverlay(){
