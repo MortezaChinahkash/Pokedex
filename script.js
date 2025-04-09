@@ -11,18 +11,25 @@ function renderOverlay(i) {
 
 function updateOverlay(i, pokeTypeBg) {
   let dialogueWindow = document.getElementById("dialogueWindow");
+  for (let j = 0; j < pokemonArray[i].types.length; j++) {
+    let pokeType = pokemonArray[i].types[j].type.name;
+  }
   dialogueWindow.innerHTML = `
             <div class="overlay_innerwindow" id="overlayInnerWindow">
                 <div class="overlay_header">
-                    <h1>${pokemonArray[i].name}</h1>
+                    <p>test<p>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
                 </div>
                 <div class="pokemon_info">
-                    <div class="pokemon_card_bg">
-                        <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
+                    <div class="flex_column">
+                        <h1>${pokemonArray[i].name}</h1>
+                        <div class="pokemon_card_bg">
+                            <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
+                        </div>
                     </div>
-                    <h1 class="stats">Pokemon Stats</h1>
-                </div>
+                    <div>
+                        <h1 class="stats">Pokemon Stats</h1>
+                        <div id="differentStats"></div>
     `;
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
