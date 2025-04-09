@@ -21,7 +21,8 @@ function updateOverlay(i, pokeTypeBg) {
                     <div class="pokemon_card_bg">
                         <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
                     </div>
-                    <h1>Pokémon Tabelle</h1>
+                    <h1 class="stats">Pokemon Stats</h1>
+                </div>
     `;
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);

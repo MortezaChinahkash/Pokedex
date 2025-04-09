@@ -200,7 +200,12 @@ header {
 
 h1 {
   font-size: 28px;
-  color: #ffffff;
+  color: #000000;
+  text-shadow: 
+    0 0 5px white,
+    0 0 10px white,
+    0 0 15px white,
+    0 0 20px white;
   margin: 8px 0;
   text-transform: capitalize;
   margin-left: 20px;
@@ -246,6 +251,7 @@ h1 {
   background-size: cover;
   box-sizing: border-box;
   animation: pulseShadow 2s infinite alternate;
+  margin-left: 20px;
 }
 
 @keyframes pulseShadow {
@@ -265,7 +271,7 @@ h1 {
 .pokemon_info {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .loader {
   position: fixed;
@@ -290,4 +296,14 @@ h1 {
 .loading_text{
   color: white;
   font-size: 20px;
+}
+.stats{
+  margin-right: 20px;
+  margin-top: 0;
+  color: #000;
+  text-shadow: 
+    0 0 5px white,
+    0 0 10px white,
+    0 0 15px white,
+    0 0 20px white;
 }
