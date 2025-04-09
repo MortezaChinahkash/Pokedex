@@ -37,9 +37,11 @@ function renderPkmCard(){
 }
 
 function addMorePokemon() {
+    loadMorePkmnLS();
     startIndex = lastIndex;
     lastIndex += 20;
     fetchUrls();
+    
 }
 
 function renderOverlay(i){
@@ -57,8 +59,32 @@ function renderOverlay(i){
                     <h1>${pokemonArray[i].name}</h1>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
                 </div>
-                <div class="pokemon_card_bg">
-                    <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
+                <div class="pokemon_info">
+                    <div class="pokemon_card_bg">
+                        <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
+                    </div>
+                    <h1>Pokémon Tabelle</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Typ</th>
+                <th>Höhe (m)</th>
+                <th>Gewicht (kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${pokemonArray[i].id}</td>
+                <td>${pokemonArray[i].name}</td>
+                <td>Gras, Gift</td>
+                <td>0.7</td>
+                <td>6.9</td>
+            </tr>
+            
+        </tbody>
+    </table>
                 </div>
                     <div class="navigation_button d_flex flex_y_center">
                     <button onclick="previousPkmn(${i})" class="button_leftright"> <- </button>
@@ -89,3 +115,24 @@ function nextPkmn(i) {
         updateOverlay(0);
     }
 }
+function loadingScreen() {
+    setTimeout(() => {
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("content");
+      
+      loader.classList.add("d_none");
+      content.style.display = "flex";
+    }, 3000);
+  }
+
+  function loadMorePkmnLS(){
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("content");
+    loader.classList.remove("d_none")
+    content.style.display = "none"
+    setTimeout(() => {
+    loader.classList.add("d_none");
+    content.style.display = "flex";
+    }, 3000);
+  }
+  

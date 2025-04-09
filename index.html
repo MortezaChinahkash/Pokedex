@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,11 @@
     
     <title>Pokedex</title>
 </head>
-<body onload="fetchUrls()">
+<body onload="fetchUrls(), loadingScreen()">
+    <div class="loader" id="loader">
+        <img class="loading" src="assets/png/loading.gif" alt="">
+        <p class="loading_text">Loading... Please Wait... </p>
+      </div>
     <header>
         <div class="d_none"  id="dialogueWindow"></div>
         <div class="flex_column flex_y_center">
