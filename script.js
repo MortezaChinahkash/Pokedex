@@ -5,8 +5,8 @@ let maxStats = {
     hp: 255,
     attack: 190,
     defense: 250,
-    spAttack: 154,
-    spDefense: 250,
+    'special-attack': 154,
+    'special-defense': 250,
     speed: 150
   };
 
@@ -188,35 +188,23 @@ function renderBaseStats(i) {
     let baseStats = pokemonArray[i].stats;
     statsContainer.innerHTML = "";
     console.log(baseStats);
-    
     let cardHTML = `
       <div class="card" id="pokemon-card">
-        <div class="progress_bars">
-    `;
-  
-    // Durchlaufe alle Base Stats und erstelle die Balken
+        <div class="progress_bars">`;
     for (let k = 0; k < baseStats.length; k++) {
       let statName = baseStats[k].stat.name;
       let baseValue = baseStats[k].base_stat;
       let maxValue = maxStats[statName];
-  
-      // Füge den Fortschrittsbalken HTML-Block für jedes Stat hinzu
       cardHTML += `
-        <div class="progress_bar_container">
-          <div id="${statName}-bar" class="progress_bar">${capitalize(statName)}: ${baseValue}</div>
-        </div>
-      `;
-    }
-  
+  <div class="progress_bar_container">
+    <span class="stat-label">${capitalize(statName)}: ${baseValue} / ${maxValue}</span>
+    <div id="${statName}-bar" class="progress_bar"></div>
+  </div>`;
+}
     cardHTML += `
         </div>
-      </div>
-    `;
-  
-    // Setze den innerHTML der statsContainer nur einmal
+      </div>`;
     statsContainer.innerHTML = cardHTML;
-  
-    // Aktualisiere die Fortschrittsbalken
     for (let k = 0; k < baseStats.length; k++) {
       let statName = baseStats[k].stat.name;
       let baseValue = baseStats[k].base_stat;
@@ -224,16 +212,13 @@ function renderBaseStats(i) {
       updateProgressBar(`${statName}-bar`, baseValue, maxValue);
     }
   }
-  
-  // Funktion zum Aktualisieren des Fortschrittsbalkens
+
   function updateProgressBar(id, value, maxValue) {
     let percentage = (value / maxValue) * 100;
     let bar = document.getElementById(id);
-    bar.style.width = percentage + '%';  // Setze die Breite des Fortschrittsbalkens
-    bar.innerText = `${value}`;  // Zeige den Wert im Balken an
+    bar.style.width = percentage + '%';
   }
-  
-  // Hilfsfunktion, um den Namen der Base Stats zu kapitalisieren
+
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }

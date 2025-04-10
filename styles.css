@@ -327,6 +327,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-right: 20px;
+  max-height: 300px;
 }
 
 table {
@@ -347,19 +348,30 @@ th {
   font-weight: bold;
 }
 .progress_bar_container {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  margin: 10px 0;
+  background-color: #00e1ff41;
+  width: 200px;
+  height: 20px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-label {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  line-height: 20px;
 }
 
 .progress_bar {
-  height: 20px;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  line-height: 20px;
-  width: 0;  /* Startwert der Breite (wird später dynamisch gesetzt) */
-  transition: width 0.5s ease-in-out;  /* Übergang für sanftes Wachstum des Balkens */
+  background-color: #4caf50;
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease;
+  z-index: 1;
 }
