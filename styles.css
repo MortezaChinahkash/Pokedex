@@ -317,3 +317,32 @@ h1 {
   border-radius: 10px;
   cursor: pointer;
 }
+.card {
+  background: #ffffffc5;
+  width: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+table {
+  color: #000;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  background-color: #f8f8f88c;
+  border: 1px solid #000000;
+  text-align: center;
+  padding: 8px;
+}
+
+th {
+  background-color: #f8f8f88c;
+  font-weight: bold;
+}

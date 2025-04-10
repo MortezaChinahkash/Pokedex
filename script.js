@@ -37,6 +37,7 @@ function updateOverlay(i, pokeTypeBg) {
     `;
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
+  renderGeneralStats(i);
 }
 
 function closeOverlay() {
@@ -137,11 +138,36 @@ function addTypeBgOverlay(overlayBg, pokeTypeBg) {
   overlayBg.style.backgroundRepeat = "no-repeat";
   overlayBg.style.backgroundPosition = "center";
 }
-function renderGeneralStats(i){
-   let statsContainer = document.getElementById("differentStats")
-   statsContainer.innerHTML = "";
-   statsContainer.innerHTML += `
-   
-   `
-
+function renderGeneralStats(i) {
+  let statsContainer = document.getElementById("differentStats");
+  let weight = pokemonArray[i].weight
+  let weightString = weight.toString(); 
+  let formattedWeight = weightString.slice(0, weightString.length - 1) + ',' + weightString.slice(-1);
+  statsContainer.innerHTML = "";
+  statsContainer.innerHTML += `
+   <div class="card">
+    <table>
+      <tr>
+        <th>Category</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Base EXP</td>
+        <td>${pokemonArray[i].base_experience} XP</td>
+      </tr>
+      <tr>
+        <td>Height</td>
+        <td>${pokemonArray[i].height} dm</td>
+      </tr>
+      <tr>
+        <td>Weight</td>
+        <td>${formattedWeight} KG</td>
+      </tr>
+      <tr>
+        <td>ID#</td>
+        <td>${pokemonArray[i].id}</td>
+      </tr>
+    </table>
+  </div>
+   `;
 }
