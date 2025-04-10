@@ -44,7 +44,7 @@ function updateOverlay(i, pokeTypeBg) {
         </div>
         <div class="types_scream">
           <div id="typesInOverlayandScream"></div>
-          <button class="scream_button">Test</button>
+          <button onclick="playScream(${i})" class="btn scream_button">Play Scream</button>
         </div>
     </div>
 `;
@@ -253,3 +253,10 @@ function addTypesToOverlay(i) {
     `;
 }
 }
+
+function playScream(i) {
+  let scream = pokemonArray[i].cries.latest
+  let cry = new Audio(scream)
+  cry.play()
+}
+

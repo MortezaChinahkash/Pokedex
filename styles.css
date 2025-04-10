@@ -412,6 +412,7 @@ max-width: 300px;
   min-width: 100px;
   align-items: center;
   margin-left: 20px;
+  flex: 1;
 }
 .scream_button{
   margin-right: 20px;
