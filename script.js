@@ -112,8 +112,6 @@ function addMorePokemon() {
     updateOverlay(newIndex, pokeTypeBg);
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
-  renderGeneralStats(i);
-  addTypesToOverlay(i);
 }
 
 function nextPkmn(i) {
@@ -122,8 +120,6 @@ function nextPkmn(i) {
   updateOverlay(newIndex, pokeTypeBg);
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
-  renderGeneralStats(i);
-  addTypesToOverlay(i);
 }
 
 function loadingScreen() {
