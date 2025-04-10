@@ -46,12 +46,17 @@ function updateOverlay(i, pokeTypeBg) {
           <div id="typesInOverlayandScream"></div>
           <button onclick="playScream(${i})" class="btn scream_button">Play Scream</button>
         </div>
+        <div class="forward_backward">
+        <img class="arrow" onclick="previousPkmn(${i}, '${pokeTypeBg}')" src="./assets/png/arrow_back.png">
+          <p>${pokemonArray[i].id} of ${pokemonArray.length}</p>
+        <img class="arrow" onclick="nextPkmn(${i}, '${pokeTypeBg}')" src="./assets/png/arrow_forward.png">
+        </div>
     </div>
 `;
-  let overlayBg = document.getElementById("overlayInnerWindow");
-  addTypeBgOverlay(overlayBg, pokeTypeBg);
-  renderGeneralStats(i);
-  addTypesToOverlay(i);
+let overlayBg = document.getElementById("overlayInnerWindow");
+addTypeBgOverlay(overlayBg, pokeTypeBg);
+renderGeneralStats(i);
+addTypesToOverlay(i);
 }
 
 function closeOverlay() {
@@ -90,7 +95,6 @@ function renderPkmCard() {
       typeContainer.innerHTML += `
             <p>${pokeType}</p>`;
       addTypeBg(pokeTypeBg, pokeCardIndex);
-      updateOverlay(i, pokeTypeBg);
     }
   }
 }
@@ -102,20 +106,24 @@ function addMorePokemon() {
   fetchUrls();
 }
 
-function previousPkmn(i) {
-  if (i > 0) {
-    updateOverlay(i - 1);
-  } else {
-    updateOverlay(pokemonArray.length - 1);
-  }
+  function previousPkmn(i) {
+    let newIndex = i > 0 ? i - 1 : pokemonArray.length - 1;
+    let pokeTypeBg = pokemonArray[newIndex].types[0].type.name;
+    updateOverlay(newIndex, pokeTypeBg);
+  let overlayBg = document.getElementById("overlayInnerWindow");
+  addTypeBgOverlay(overlayBg, pokeTypeBg);
+  renderGeneralStats(i);
+  addTypesToOverlay(i);
 }
 
 function nextPkmn(i) {
-  if (i < pokemonArray.length - 1) {
-    updateOverlay(i + 1);
-  } else {
-    updateOverlay(0);
-  }
+  let newIndex = i < pokemonArray.length - 1 ? i + 1 : 0;
+  let pokeTypeBg = pokemonArray[newIndex].types[0].type.name;
+  updateOverlay(newIndex, pokeTypeBg);
+  let overlayBg = document.getElementById("overlayInnerWindow");
+  addTypeBgOverlay(overlayBg, pokeTypeBg);
+  renderGeneralStats(i);
+  addTypesToOverlay(i);
 }
 
 function loadingScreen() {
@@ -246,6 +254,7 @@ function renderAttacks(i) {
 
 function addTypesToOverlay(i) {
   let typesContainer = document.getElementById("typesInOverlayandScream");
+  typesContainer.innerHTML = "";
   for (let j = 0; j < pokemonArray[i].types.length; j++) {
     let pokeType = pokemonArray[i].types[j].type.name;
     typesContainer.innerHTML += `
