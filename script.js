@@ -28,7 +28,7 @@ function updateOverlay(i, pokeTypeBg) {
                 <div class="d_flex flex_y_center">
                     <div onclick="renderGeneralStats(${i})" class="btn overlay_btn">General stats</div>
                     <div onclick="renderBaseStats(${i})" class="btn overlay_btn">Base stats</div>
-                    <div class="btn overlay_btn">Attacks</div>
+                    <div onclick="renderAttacks(${i})" class="btn overlay_btn">Attacks</div>
                 </div>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
                 </div>
@@ -42,10 +42,15 @@ function updateOverlay(i, pokeTypeBg) {
                     <div>
                         <h1 class="stats">Pokemon Stats</h1>
                         <div id="differentStats"></div>
-    `;
+                    </div>`;
+                    <div id="typesInOverlay"></div>
+
+
+
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
   renderGeneralStats(i);
+  addTypesToOverlay(i, pokeType)
 }
 
 function closeOverlay() {
@@ -221,4 +226,24 @@ function renderProgressbar(statsContainer, baseStats, cardHTML){
 
   function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function renderAttacks(i) {
+    let statsContainer = document.getElementById("differentStats");
+    let attacks = pokemonArray[i].moves
+    statsContainer.innerHTML = ""
+    statsContainer.innerHTML = `<div class="card_attacks" id="pokemon_attacks"></div>`
+    for (let l = 0; l < attacks.length; l++) {
+      document.getElementById("pokemon_attacks").innerHTML += /*html*/ `
+      <div class="attacks">
+      <p>${attacks[l].move.name}</p>
+      </div>`
+    }
+  }
+
+  function addTypesToOverlay(i, pokeType){
+    let typesContainer = document.getElementById("typesInOverlay")
+    typesContainer.innerHTML += `
+    
+    `
   }
