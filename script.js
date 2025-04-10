@@ -187,10 +187,13 @@ function renderBaseStats(i) {
     let statsContainer = document.getElementById("differentStats");
     let baseStats = pokemonArray[i].stats;
     statsContainer.innerHTML = "";
-    console.log(baseStats);
     let cardHTML = `
       <div class="card" id="pokemon-card">
         <div class="progress_bars">`;
+        renderProgressbar(statsContainer, baseStats, cardHTML)
+}
+
+function renderProgressbar(statsContainer, baseStats, cardHTML){
     for (let k = 0; k < baseStats.length; k++) {
       let statName = baseStats[k].stat.name;
       let baseValue = baseStats[k].base_stat;
@@ -200,10 +203,7 @@ function renderBaseStats(i) {
     <span class="stat-label">${capitalize(statName)}: ${baseValue} / ${maxValue}</span>
     <div id="${statName}-bar" class="progress_bar"></div>
   </div>`;
-}
-    cardHTML += `
-        </div>
-      </div>`;
+  }
     statsContainer.innerHTML = cardHTML;
     for (let k = 0; k < baseStats.length; k++) {
       let statName = baseStats[k].stat.name;
