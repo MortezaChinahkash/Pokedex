@@ -1,6 +1,14 @@
 let startIndex = 1;
 let lastIndex = 21;
 let pokemonArray = [];
+let maxStats = {
+    hp: 255,
+    attack: 190,
+    defense: 250,
+    spAttack: 154,
+    spDefense: 250,
+    speed: 150
+  };
 
 function renderOverlay(i) {
   let pokeTypeBg = pokemonArray[i].types[0].type.name;
@@ -17,9 +25,9 @@ function updateOverlay(i, pokeTypeBg) {
   dialogueWindow.innerHTML = `
             <div class="overlay_innerwindow" id="overlayInnerWindow">
                 <div class="overlay_header">
-                <div class="d_flex">
+                <div class="d_flex flex_y_center">
                     <div onclick="renderGeneralStats(${i})" class="btn overlay_btn">General stats</div>
-                    <div class="btn overlay_btn">HP</div>
+                    <div onclick="renderBaseStats(${i})" class="btn overlay_btn">Base stats</div>
                     <div class="btn overlay_btn">Attacks</div>
                 </div>
                     <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
@@ -140,9 +148,12 @@ function addTypeBgOverlay(overlayBg, pokeTypeBg) {
 }
 function renderGeneralStats(i) {
   let statsContainer = document.getElementById("differentStats");
-  let weight = pokemonArray[i].weight
-  let weightString = weight.toString(); 
-  let formattedWeight = weightString.slice(0, weightString.length - 1) + ',' + weightString.slice(-1);
+  let weight = pokemonArray[i].weight;
+  let weightString = weight.toString();
+  let formattedWeight =
+    weightString.slice(0, weightString.length - 1) +
+    "," +
+    weightString.slice(-1);
   statsContainer.innerHTML = "";
   statsContainer.innerHTML += `
    <div class="card">
@@ -171,3 +182,58 @@ function renderGeneralStats(i) {
   </div>
    `;
 }
+
+function renderBaseStats(i) {
+    let statsContainer = document.getElementById("differentStats");
+    let baseStats = pokemonArray[i].stats;
+    statsContainer.innerHTML = "";
+    console.log(baseStats);
+    
+    let cardHTML = `
+      <div class="card" id="pokemon-card">
+        <div class="progress_bars">
+    `;
+  
+    // Durchlaufe alle Base Stats und erstelle die Balken
+    for (let k = 0; k < baseStats.length; k++) {
+      let statName = baseStats[k].stat.name;
+      let baseValue = baseStats[k].base_stat;
+      let maxValue = maxStats[statName];
+  
+      // Füge den Fortschrittsbalken HTML-Block für jedes Stat hinzu
+      cardHTML += `
+        <div class="progress_bar_container">
+          <div id="${statName}-bar" class="progress_bar">${capitalize(statName)}: ${baseValue}</div>
+        </div>
+      `;
+    }
+  
+    cardHTML += `
+        </div>
+      </div>
+    `;
+  
+    // Setze den innerHTML der statsContainer nur einmal
+    statsContainer.innerHTML = cardHTML;
+  
+    // Aktualisiere die Fortschrittsbalken
+    for (let k = 0; k < baseStats.length; k++) {
+      let statName = baseStats[k].stat.name;
+      let baseValue = baseStats[k].base_stat;
+      let maxValue = maxStats[statName];
+      updateProgressBar(`${statName}-bar`, baseValue, maxValue);
+    }
+  }
+  
+  // Funktion zum Aktualisieren des Fortschrittsbalkens
+  function updateProgressBar(id, value, maxValue) {
+    let percentage = (value / maxValue) * 100;
+    let bar = document.getElementById(id);
+    bar.style.width = percentage + '%';  // Setze die Breite des Fortschrittsbalkens
+    bar.innerText = `${value}`;  // Zeige den Wert im Balken an
+  }
+  
+  // Hilfsfunktion, um den Namen der Base Stats zu kapitalisieren
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }

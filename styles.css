@@ -346,3 +346,20 @@ th {
   background-color: #f8f8f88c;
   font-weight: bold;
 }
+.progress_bar_container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.progress_bar {
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  line-height: 20px;
+  width: 0;  /* Startwert der Breite (wird später dynamisch gesetzt) */
+  transition: width 0.5s ease-in-out;  /* Übergang für sanftes Wachstum des Balkens */
+}
