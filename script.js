@@ -270,23 +270,34 @@ function findPokemon() {
   let result = pokemonArray.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName));
   let pkmCardsContainer = document.getElementById("content");
   pkmCardsContainer.innerHTML = "";
+
   for (let i = 0; i < result.length; i++) {
+    let currentPokemon = result[i];
     let typeID = `type-${i}`;
     let pokeCardIndex = `pokeCard${i}`;
+
     pkmCardsContainer.innerHTML += `
-        <div onclick="renderOverlay(${i})" id="${pokeCardIndex}" class="poke_card">
-            <p>ID:  #${result[i].id}</p>
-            <h3>${result[i].name}</h3>
-            <img src=${result[i].sprites.other.showdown.front_shiny}>
+        <div onclick="renderOverlayFromFilter(${currentPokemon.id})" id="${pokeCardIndex}" class="poke_card">
+            <p>ID:  #${currentPokemon.id}</p>
+            <h3>${currentPokemon.name}</h3>
+            <img src="${currentPokemon.sprites.other.showdown.front_shiny}">
             <div class="type_text" id="${typeID}"></div>
         </div>`;
+
     let typeContainer = document.getElementById(typeID);
-    for (let j = 0; j < result[i].types.length; j++) {
-      let pokeType = result[i].types[j].type.name;
-      let pokeTypeBg = result[i].types[0].type.name;
-      typeContainer.innerHTML += `
-            <p>${pokeType}</p>`;
+    for (let j = 0; j < currentPokemon.types.length; j++) {
+      let pokeType = currentPokemon.types[j].type.name;
+      let pokeTypeBg = currentPokemon.types[0].type.name;
+      typeContainer.innerHTML += `<p>${pokeType}</p>`;
       addTypeBg(pokeTypeBg, pokeCardIndex);
     }
+  }
+}
+
+
+function renderOverlayFromFilter(pokemonId) {
+  let i = pokemonArray.findIndex(p => p.id === pokemonId);
+  if (i !== -1) {
+    renderOverlay(i);
   }
 }
