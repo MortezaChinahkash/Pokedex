@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <script src="./script.js"></script>
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="./flex.css">
+    <link rel="stylesheet" href="./styles/flex.css">
+    <link rel="stylesheet" href="./overlay.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/poke_page.css">
+    <script src="./js/HTMLTemplates.js"></script>
+    <script src="./js/script.js"></script>
     <link rel="shortcut icon" href="assets/png/PokeLogo.png" type="image/x-icon">
-    
     <title>Pokedex</title>
 </head>
 <body onload="fetchUrls(), loadingScreen()">
-
     <div class="loader" id="loader">
         <img class="loading" src="assets/png/loading.gif" alt="">
         <p class="loading_text">Loading... Please Wait... </p>
@@ -35,12 +35,10 @@
     <button class="btn show_more" onclick="addMorePokemon()">Show More</button>
     </div>
 </div>
-</div>
     <footer class="retro-footer flex_x_center flex_y_center">
         <img class="poke_logo pl_btm flex_y_center" src="./assets/png/PokeLogo.png" alt="Bild vom Pokedex">
         <p>Created by Morteza Chinahkash </p>
     </footer>
-
-    <link rel="stylesheet" href="./background_type.css">
+    <link rel="stylesheet" href="./styles/background_type.css">
 </body>
 </html>

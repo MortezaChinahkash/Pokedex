@@ -10,61 +10,6 @@ let maxStats = {
   speed: 150,
 };
 
-function renderOverlay(i) {
-  let pokeTypeBg = pokemonArray[i].types[0].type.name;
-  document.getElementById("dialogueWindow").classList.add("overlay");
-  document.getElementById("dialogueWindow").classList.remove("d_none");
-  updateOverlay(i, pokeTypeBg);
-}
-
-function updateOverlay(i, pokeTypeBg) {
-  let dialogueWindow = document.getElementById("dialogueWindow");
-
-  dialogueWindow.innerHTML = `
-    <div class="overlay_innerwindow" id="overlayInnerWindow" onclick="event.stopPropagation()">
-        <div class="overlay_header">
-            <div class="d_flex flex_y_center stats_button">
-                <div onclick="renderGeneralStats(${i})" class="btn overlay_btn">General stats</div>
-                <div onclick="renderBaseStats(${i})" class="btn overlay_btn">Base stats</div>
-                <div onclick="renderAttacks(${i})" class="btn overlay_btn">Attacks</div>
-            </div>
-            <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
-        </div>
-        <div class="pokemon_info">
-            <div class="flex_column">
-                <h1>${pokemonArray[i].name}</h1>
-                <div class="pokemon_card_bg">
-                    <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
-                </div>
-            </div>
-            <div>
-                <h1 class="stats">Pokemon Stats</h1>
-                <div id="differentStats"></div>
-            </div>
-        </div>
-        <div class="types_scream">
-          <div id="typesInOverlayandScream"></div>
-          <button onclick="playScream(${i})" class="btn scream_button">Play Scream</button>
-        </div>
-        <div class="forward_backward">
-        <img class="arrow" onclick="previousPkmn(${i}, '${pokeTypeBg}')" src="./assets/png/arrow_back.png">
-          <p>${pokemonArray[i].id} of ${pokemonArray.length}</p>
-        <img class="arrow" onclick="nextPkmn(${i}, '${pokeTypeBg}')" src="./assets/png/arrow_forward.png">
-        </div>
-    </div>
-`;
-  let overlayBg = document.getElementById("overlayInnerWindow");
-  addTypeBgOverlay(overlayBg, pokeTypeBg);
-  renderGeneralStats(i);
-  addTypesToOverlay(i);
-}
-
-function closeOverlay() {
-  document.getElementById("dialogueWindow").classList.remove("overlay");
-  document.getElementById("dialogueWindow").classList.add("d_none");
-  document.getElementById("overlayInnerWindow").classList.add("d_none");
-}
-
 async function fetchUrls() {
   for (let i = startIndex; i < lastIndex; i++) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -81,22 +26,39 @@ function renderPkmCard() {
   for (let i = 0; i < pokemonArray.length; i++) {
     let typeID = `type-${i}`;
     let pokeCardIndex = `pokeCard${i}`;
-    pkmCardsContainer.innerHTML += `
-        <div onclick="renderOverlay(${i})" id="${pokeCardIndex}" class="poke_card">
-            <p>ID:  #${pokemonArray[i].id}</p>
-            <h3>${pokemonArray[i].name}</h3>
-            <img src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
-            <div class="type_text" id="${typeID}"></div>
-        </div>`;
+    pkmCardsContainer.innerHTML += renderPkmCardHTMLTemplate(i, typeID, pokeCardIndex);
     let typeContainer = document.getElementById(typeID);
-    for (let j = 0; j < pokemonArray[i].types.length; j++) {
+    for (let j = 0; j < pokemonArray[i].types.length; j++){
       let pokeType = pokemonArray[i].types[j].type.name;
       let pokeTypeBg = pokemonArray[i].types[0].type.name;
-      typeContainer.innerHTML += `
-            <p>${pokeType}</p>`;
+      typeContainer.innerHTML += `<p>${pokeType}</p>`;
       addTypeBg(pokeTypeBg, pokeCardIndex);
     }
   }
+}
+
+function renderOverlay(i) {
+  let pokeTypeBg = pokemonArray[i].types[0].type.name;
+  document.getElementById("dialogueWindow").classList.add("overlay");
+  document.body.classList.add("no_scroll");
+  document.getElementById("dialogueWindow").classList.remove("d_none");
+  updateOverlay(i, pokeTypeBg);
+}
+
+function updateOverlay(i, pokeTypeBg) {
+  let dialogueWindow = document.getElementById("dialogueWindow");
+  dialogueWindow.innerHTML = updateOverlayHTMLTemplate(i, pokeTypeBg);
+  let overlayBg = document.getElementById("overlayInnerWindow");
+  addTypeBgOverlay(overlayBg, pokeTypeBg);
+  renderGeneralStats(i);
+  addTypesToOverlay(i);
+}
+
+function closeOverlay() {
+  document.getElementById("dialogueWindow").classList.remove("overlay");
+  document.body.classList.remove("no_scroll");
+  document.getElementById("dialogueWindow").classList.add("d_none");
+  document.getElementById("overlayInnerWindow").classList.add("d_none");
 }
 
 function addMorePokemon() {
@@ -156,6 +118,7 @@ function addTypeBgOverlay(overlayBg, pokeTypeBg) {
   overlayBg.style.backgroundRepeat = "no-repeat";
   overlayBg.style.backgroundPosition = "center";
 }
+
 function renderGeneralStats(i) {
   let statsContainer = document.getElementById("differentStats");
   let weight = pokemonArray[i].weight;
@@ -165,41 +128,14 @@ function renderGeneralStats(i) {
     "," +
     weightString.slice(-1);
   statsContainer.innerHTML = "";
-  statsContainer.innerHTML += `
-   <div class="card">
-    <table>
-      <tr>
-        <th>Category</th>
-        <th>Value</th>
-      </tr>
-      <tr>
-        <td>Base EXP</td>
-        <td>${pokemonArray[i].base_experience} XP</td>
-      </tr>
-      <tr>
-        <td>Height</td>
-        <td>${pokemonArray[i].height} dm</td>
-      </tr>
-      <tr>
-        <td>Weight</td>
-        <td>${formattedWeight} KG</td>
-      </tr>
-      <tr>
-        <td>ID#</td>
-        <td>${pokemonArray[i].id}</td>
-      </tr>
-    </table>
-  </div>
-   `;
+  statsContainer.innerHTML += renderGeneralStatsHTMLTemplate(i, formattedWeight)
 }
 
 function renderBaseStats(i) {
   let statsContainer = document.getElementById("differentStats");
   let baseStats = pokemonArray[i].stats;
   statsContainer.innerHTML = "";
-  let cardHTML = `
-      <div class="card" id="pokemon-card">
-        <div class="progress_bars">`;
+  let cardHTML = `<div class="card" id="pokemon-card"><div class="progress_bars">`;
   renderProgressbar(statsContainer, baseStats, cardHTML);
 }
 
@@ -208,13 +144,7 @@ function renderProgressbar(statsContainer, baseStats, cardHTML) {
     let statName = baseStats[k].stat.name;
     let baseValue = baseStats[k].base_stat;
     let maxValue = maxStats[statName];
-    cardHTML += `
-  <div class="progress_bar_container">
-    <span class="stat-label">${capitalize(
-      statName
-    )}: ${baseValue} / ${maxValue}</span>
-    <div id="${statName}-bar" class="progress_bar"></div>
-  </div>`;
+    cardHTML += renderProgressbarHTMLTemplate(statName, baseValue, maxValue)
   }
   statsContainer.innerHTML = cardHTML;
   for (let k = 0; k < baseStats.length; k++) {
@@ -241,10 +171,8 @@ function renderAttacks(i) {
   statsContainer.innerHTML = "";
   statsContainer.innerHTML = `<div class="card_attacks" id="pokemon_attacks"></div>`;
   for (let l = 0; l < attacks.length; l++) {
-    document.getElementById("pokemon_attacks").innerHTML += /*html*/ `
-      <div class="attacks">
-      <p>${attacks[l].move.name}</p>
-      </div>`;
+    document.getElementById("pokemon_attacks").innerHTML +=`<div class="attacks">
+    <p>${attacks[l].move.name}</p></div>`;
   }
 }
 
@@ -253,9 +181,7 @@ function addTypesToOverlay(i) {
   typesContainer.innerHTML = "";
   for (let j = 0; j < pokemonArray[i].types.length; j++) {
     let pokeType = pokemonArray[i].types[j].type.name;
-    typesContainer.innerHTML += `
-      <img class="type_pic" src="./assets/png/overlay_types/${pokeType}.svg">
-    `;
+    typesContainer.innerHTML += `<img class="type_pic" src="./assets/png/overlay_types/${pokeType}.svg">`;
   }
 }
 
@@ -269,33 +195,19 @@ function findPokemon() {
   const input = document.getElementById("input").value.toLowerCase();
   const container = document.getElementById("content");
   container.innerHTML = "";
-
   if (input.length === 0) return renderPkmCard();
   if (input.length < 3) return container.innerHTML = `<p class="hint-text">Please enter at least 3 characters to search.</p>`;
-
   const result = pokemonArray.filter(p => p.name.toLowerCase().includes(input));
-
   return result.length === 0
     ? container.innerHTML = `<p class="hint-text">No Pokémon found.</p>`
     : result.forEach((p, i) => {
         const cardId = `pokeCard${i}`;
         const typeId = `type-${i}`;
-
-        container.innerHTML += `
-          <div onclick="renderOverlayFromFilter(${p.id})" id="${cardId}" class="poke_card">
-              <p>ID:  #${p.id}</p>
-              <h3>${p.name}</h3>
-              <img src="${p.sprites.other.showdown.front_shiny}">
-              <div class="type_text" id="${typeId}"></div>
-          </div>`;
-
+        container.innerHTML += findPokemonHTMLTemplate(p, cardId, typeId) 
         const typeContainer = document.getElementById(typeId);
         p.types.forEach(type => {
-          typeContainer.innerHTML += `<p>${type.type.name}</p>`;
-        });
-
-        addTypeBg(p.types[0].type.name, cardId);
-      });
+          typeContainer.innerHTML += `<p>${type.type.name}</p>`;});
+        addTypeBg(p.types[0].type.name, cardId);});
 }
 
 function renderOverlayFromFilter(pokemonId) {
