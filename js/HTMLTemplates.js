@@ -43,6 +43,7 @@ function renderPkmCardHTMLTemplate(i, typeID, pokeCardIndex){
         <div class="type_text" id="${typeID}"></div>
     </div>`;
 }
+
 function renderGeneralStatsHTMLTemplate(i, formattedWeight) {
     return  `
     <div class="card">
@@ -90,6 +91,4 @@ function findPokemonHTMLTemplate(p, cardId, typeId) {
               <img src="${p.sprites.other.showdown.front_shiny}">
               <div class="type_text" id="${typeId}"></div>
           </div>`;
-
-    
 }
