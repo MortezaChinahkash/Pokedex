@@ -2,6 +2,7 @@ body {
   margin: 0;
   position: relative;
   overflow-x: hidden;
+  background-color: #5f33b1;
 }
 header {
   position: sticky;
@@ -31,7 +32,7 @@ header {
   height: 100px;
 }
 .content {
-  background-color: #5f33b1;
+
   display: flex;
   flex-wrap: wrap;
 }
@@ -423,8 +424,11 @@ th {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 16px;
-  box-sizing: border-box;
 }
+#content{
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .overlay_innerwindow {
     width: 100vw;
@@ -432,6 +436,46 @@ th {
     max-width: 100vw;
     max-height: 100vh;
     border-radius: 0;
-    padding: 16px;
+    gap: 12px;
   }
+
+  .overlay_btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .overlay_header {
+    margin-bottom: 16px;
+  }
+
+.stats_button{
+  flex-direction: column;
+  gap: 10px;
+}
+}
+@media (max-width: 570px) {
+.pokemon_info{
+  flex-direction: column;
+  align-items: center;
+}
+.pokemon_card_bg{
+  height: 225px;
+  margin-bottom: 30px;
+  margin-left: 0;
+  margin-right: 0;
+}
+h1{
+  margin-left: 0;
+  margin-right: 0;
+}
+.stats{
+  margin-right: 0;
+}
+.card{
+  margin-right: 0;
+  margin-left: 0;
+}
+.img_btn{
+  margin-right: 0;
+}
 }

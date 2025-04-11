@@ -21,9 +21,9 @@ function updateOverlay(i, pokeTypeBg) {
   let dialogueWindow = document.getElementById("dialogueWindow");
 
   dialogueWindow.innerHTML = `
-    <div class="overlay_innerwindow" id="overlayInnerWindow">
+    <div class="overlay_innerwindow" id="overlayInnerWindow" onclick="event.stopPropagation()">
         <div class="overlay_header">
-            <div class="d_flex flex_y_center">
+            <div class="d_flex flex_y_center stats_button">
                 <div onclick="renderGeneralStats(${i})" class="btn overlay_btn">General stats</div>
                 <div onclick="renderBaseStats(${i})" class="btn overlay_btn">Base stats</div>
                 <div onclick="renderAttacks(${i})" class="btn overlay_btn">Attacks</div>

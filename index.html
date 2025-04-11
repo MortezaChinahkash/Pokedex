@@ -12,13 +12,13 @@
     <title>Pokedex</title>
 </head>
 <body onload="fetchUrls(), loadingScreen()">
-<div class="container">
+
     <div class="loader" id="loader">
         <img class="loading" src="assets/png/loading.gif" alt="">
         <p class="loading_text">Loading... Please Wait... </p>
       </div>
     <header>
-        <div class="d_none"  id="dialogueWindow"></div>
+        <div onclick="closeOverlay()" class="d_none"  id="dialogueWindow"></div>
         <div class="flex_column flex_y_center">
             <div class="d_flex logos_container flex_y_center">
                 <img class="poke_logo flex_y_center" src="./assets/png/PokeLogo.png" alt="Bild vom Pokedex">
@@ -29,16 +29,18 @@
             </div>
         </div>
     </header>
-    
+    <div class="container">
     <div class="content flex_x_center" id="content"></div>
     <div class="content flex_x_center">
     <button class="btn show_more" onclick="addMorePokemon()">Show More</button>
     </div>
+</div>
+</div>
     <footer class="retro-footer flex_x_center flex_y_center">
         <img class="poke_logo pl_btm flex_y_center" src="./assets/png/PokeLogo.png" alt="Bild vom Pokedex">
         <p>Created by Morteza Chinahkash </p>
     </footer>
-</div>
+
     <link rel="stylesheet" href="./background_type.css">
 </body>
 </html>
