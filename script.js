@@ -266,34 +266,37 @@ function playScream(i) {
 }
 
 function findPokemon() {
-  let pokemonName = document.getElementById("input").value.toLowerCase();
-  let result = pokemonArray.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName));
-  let pkmCardsContainer = document.getElementById("content");
-  pkmCardsContainer.innerHTML = "";
+  const input = document.getElementById("input").value.toLowerCase();
+  const container = document.getElementById("content");
+  container.innerHTML = "";
 
-  for (let i = 0; i < result.length; i++) {
-    let currentPokemon = result[i];
-    let typeID = `type-${i}`;
-    let pokeCardIndex = `pokeCard${i}`;
+  if (input.length === 0) return renderPkmCard();
+  if (input.length < 3) return container.innerHTML = `<p class="hint-text">Please enter at least 3 characters to search.</p>`;
 
-    pkmCardsContainer.innerHTML += `
-        <div onclick="renderOverlayFromFilter(${currentPokemon.id})" id="${pokeCardIndex}" class="poke_card">
-            <p>ID:  #${currentPokemon.id}</p>
-            <h3>${currentPokemon.name}</h3>
-            <img src="${currentPokemon.sprites.other.showdown.front_shiny}">
-            <div class="type_text" id="${typeID}"></div>
-        </div>`;
+  const result = pokemonArray.filter(p => p.name.toLowerCase().includes(input));
 
-    let typeContainer = document.getElementById(typeID);
-    for (let j = 0; j < currentPokemon.types.length; j++) {
-      let pokeType = currentPokemon.types[j].type.name;
-      let pokeTypeBg = currentPokemon.types[0].type.name;
-      typeContainer.innerHTML += `<p>${pokeType}</p>`;
-      addTypeBg(pokeTypeBg, pokeCardIndex);
-    }
-  }
+  return result.length === 0
+    ? container.innerHTML = `<p class="hint-text">No Pokémon found.</p>`
+    : result.forEach((p, i) => {
+        const cardId = `pokeCard${i}`;
+        const typeId = `type-${i}`;
+
+        container.innerHTML += `
+          <div onclick="renderOverlayFromFilter(${p.id})" id="${cardId}" class="poke_card">
+              <p>ID:  #${p.id}</p>
+              <h3>${p.name}</h3>
+              <img src="${p.sprites.other.showdown.front_shiny}">
+              <div class="type_text" id="${typeId}"></div>
+          </div>`;
+
+        const typeContainer = document.getElementById(typeId);
+        p.types.forEach(type => {
+          typeContainer.innerHTML += `<p>${type.type.name}</p>`;
+        });
+
+        addTypeBg(p.types[0].type.name, cardId);
+      });
 }
-
 
 function renderOverlayFromFilter(pokemonId) {
   let i = pokemonArray.findIndex(p => p.id === pokemonId);

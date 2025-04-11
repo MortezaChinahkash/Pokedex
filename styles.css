@@ -31,7 +31,7 @@ header {
   height: 100px;
 }
 .content {
-  background-color: #3498db;
+  background-color: #4d34db;
   display: flex;
   flex-wrap: wrap;
 }
@@ -410,4 +410,12 @@ th {
 }
 .arrow{
   width: 40px;
+}
+.hint-text {
+  font-style: italic;
+  color: rgb(255, 0, 0);
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 24px;
 }
