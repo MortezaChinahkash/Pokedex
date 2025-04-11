@@ -53,10 +53,10 @@ function updateOverlay(i, pokeTypeBg) {
         </div>
     </div>
 `;
-let overlayBg = document.getElementById("overlayInnerWindow");
-addTypeBgOverlay(overlayBg, pokeTypeBg);
-renderGeneralStats(i);
-addTypesToOverlay(i);
+  let overlayBg = document.getElementById("overlayInnerWindow");
+  addTypeBgOverlay(overlayBg, pokeTypeBg);
+  renderGeneralStats(i);
+  addTypesToOverlay(i);
 }
 
 function closeOverlay() {
@@ -106,10 +106,10 @@ function addMorePokemon() {
   fetchUrls();
 }
 
-  function previousPkmn(i) {
-    let newIndex = i > 0 ? i - 1 : pokemonArray.length - 1;
-    let pokeTypeBg = pokemonArray[newIndex].types[0].type.name;
-    updateOverlay(newIndex, pokeTypeBg);
+function previousPkmn(i) {
+  let newIndex = i > 0 ? i - 1 : pokemonArray.length - 1;
+  let pokeTypeBg = pokemonArray[newIndex].types[0].type.name;
+  updateOverlay(newIndex, pokeTypeBg);
   let overlayBg = document.getElementById("overlayInnerWindow");
   addTypeBgOverlay(overlayBg, pokeTypeBg);
 }
@@ -256,12 +256,37 @@ function addTypesToOverlay(i) {
     typesContainer.innerHTML += `
       <img class="type_pic" src="./assets/png/overlay_types/${pokeType}.svg">
     `;
-}
+  }
 }
 
 function playScream(i) {
-  let scream = pokemonArray[i].cries.latest
-  let cry = new Audio(scream)
-  cry.play()
+  let scream = pokemonArray[i].cries.latest;
+  let cry = new Audio(scream);
+  cry.play();
 }
 
+function findPokemon() {
+  let pokemonName = document.getElementById("input").value.toLowerCase();
+  let result = pokemonArray.filter((pokemon) => pokemon.name.toLowerCase().includes(pokemonName));
+  let pkmCardsContainer = document.getElementById("content");
+  pkmCardsContainer.innerHTML = "";
+  for (let i = 0; i < result.length; i++) {
+    let typeID = `type-${i}`;
+    let pokeCardIndex = `pokeCard${i}`;
+    pkmCardsContainer.innerHTML += `
+        <div onclick="renderOverlay(${i})" id="${pokeCardIndex}" class="poke_card">
+            <p>ID:  #${result[i].id}</p>
+            <h3>${result[i].name}</h3>
+            <img src=${result[i].sprites.other.showdown.front_shiny}>
+            <div class="type_text" id="${typeID}"></div>
+        </div>`;
+    let typeContainer = document.getElementById(typeID);
+    for (let j = 0; j < result[i].types.length; j++) {
+      let pokeType = result[i].types[j].type.name;
+      let pokeTypeBg = result[i].types[0].type.name;
+      typeContainer.innerHTML += `
+            <p>${pokeType}</p>`;
+      addTypeBg(pokeTypeBg, pokeCardIndex);
+    }
+  }
+}
