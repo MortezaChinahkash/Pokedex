@@ -24,6 +24,11 @@
             <div class="d_flex logos_container flex_y_center">
                 <img class="poke_logo flex_y_center" src="./assets/png/PokeLogo.png" alt="Bild vom Pokedex">
                 <img class="poke_font flex_y_center" src="./assets/png/PokeFont.png" alt="Pokedex Schriftzug">
+                <div class="theme-toggle-container">
+                    <button onclick="toggleTheme()" class="theme-toggle" id="themeToggle">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
             </div>
             <div class="search-container">
                 <input onkeyup="findPokemon()" id="input" class="input" type="text" placeholder="Search Pokemon from current list.. ">

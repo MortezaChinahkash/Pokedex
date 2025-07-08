@@ -245,3 +245,39 @@ function renderOverlayFromFilter(pokemonId) {
     renderOverlay(i);
   }
 }
+
+// Theme Toggle Functionality
+function toggleTheme() {
+  const body = document.body;
+  const themeIcon = document.querySelector('.theme-icon');
+  
+  if (body.classList.contains('light-theme')) {
+    // Switch to dark theme
+    body.classList.remove('light-theme');
+    themeIcon.textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    // Switch to light theme
+    body.classList.add('light-theme');
+    themeIcon.textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Initialize theme on page load
+function initializeTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const body = document.body;
+  const themeIcon = document.querySelector('.theme-icon');
+  
+  if (savedTheme === 'light') {
+    body.classList.add('light-theme');
+    themeIcon.textContent = '☀️';
+  } else {
+    body.classList.remove('light-theme');
+    themeIcon.textContent = '🌙';
+  }
+}
+
+// Call initializeTheme when page loads
+document.addEventListener('DOMContentLoaded', initializeTheme);
