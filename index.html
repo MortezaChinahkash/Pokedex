@@ -18,16 +18,18 @@
         <p class="loading_text">Loading... Please Wait... </p>
       </div>
     <header>
+        <div class="container">
         <div onclick="closeOverlay()" class="d_none"  id="dialogueWindow"></div>
         <div class="flex_column flex_y_center">
             <div class="d_flex logos_container flex_y_center">
                 <img class="poke_logo flex_y_center" src="./assets/png/PokeLogo.png" alt="Bild vom Pokedex">
-                <img class="poke_font flex_y_center" src="./assets/png/PokeFont.svg" alt="Pokedex Schriftzug">
+                <img class="poke_font flex_y_center" src="./assets/png/PokeFont.png" alt="Pokedex Schriftzug">
             </div>
             <div class="search-container">
                 <input onkeyup="findPokemon()" id="input" class="input" type="text" placeholder="Search Pokemon from current list.. ">
             </div>
         </div>
+    </div>
     </header>
     <div class="container">
     <div class="content flex_x_center" id="content"></div>

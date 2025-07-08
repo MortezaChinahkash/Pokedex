@@ -181,7 +181,7 @@ function addTypesToOverlay(i) {
   typesContainer.innerHTML = "";
   for (let j = 0; j < pokemonArray[i].types.length; j++) {
     let pokeType = pokemonArray[i].types[j].type.name;
-    typesContainer.innerHTML += `<img class="type_pic" src="./assets/png/overlay_types/${pokeType}.svg">`;
+    typesContainer.innerHTML += `<div class="type_pic_container"><img class="type_pic" src="./assets/png/overlay_types/${pokeType}.svg"></div>`;
   }
 }
 

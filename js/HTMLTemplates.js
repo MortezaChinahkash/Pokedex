@@ -23,7 +23,7 @@ function updateOverlayHTMLTemplate(i, pokeTypeBg){
         </div>
         <div class="types_scream">
           <div id="typesInOverlayandScream"></div>
-          <button onclick="playScream(${i})" class="btn scream_button">Play Scream</button>
+          <button onclick="playScream(${i})" class="btn scream_button">Play Sound</button>
         </div>
         <div class="forward_backward">
         <img class="arrow" onclick="previousPkmn(${i}, '${pokeTypeBg}')" src="./assets/png/arrow_back.png">

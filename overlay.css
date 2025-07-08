@@ -12,17 +12,21 @@
 .overlay_innerwindow {
   background-position: center;
   background-size: cover;
-  padding: 20px;
+  padding: 2rem;
   border-radius: 15px;
   height: 500px;
   width: 80%;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 2000;
   max-width: 550px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 h1 {
@@ -227,6 +231,7 @@ th {
 
 #typesInOverlayandScream {
   margin-left: 20px;
+  display: flex;
 }
 .scream_button {
   margin-right: 20px;
@@ -242,4 +247,13 @@ th {
 .arrow {
   width: 40px;
   cursor: pointer;
+}
+.type_pic_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: rgba(68, 68, 68, 0.514);
 }

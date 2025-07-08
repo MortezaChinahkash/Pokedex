@@ -50,6 +50,8 @@ header {
   .overlay_btn {
     width: 100%;
     text-align: center;
+    margin-left: 80px;
+    margin-top: 20px;
   }
 
   .overlay_header {
@@ -59,6 +61,10 @@ header {
   .stats_button {
     flex-direction: column;
     gap: 10px;
+  }
+  .arrow{
+    margin-left: 20px;
+    margin-right: 10px;
   }
 }
 @media (max-width: 570px) {
@@ -82,8 +88,48 @@ header {
   .card {
     margin-right: 0;
     margin-left: 0;
+
+  }
+  .card_attacks{
+    max-height: 210px;
   }
   .img_btn {
     margin-right: 0;
+  }
+  .overlay_btn {
+    width: 100%;
+    text-align: center;
+    margin-left: 80px;
+    margin-top: 5px;
+  }
+  .stats_button{
+      width: 100px;
+      text-align: center;
+      gap: 0;
+  }
+  .pkmn_overlay{
+    width: 70px;
+    margin-bottom: 0;
+  }
+  .pokemon_card_bg{
+    height: 100px;
+    background-position: center;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  .card{
+    background: #00000000;
+    height: 80px;
+    box-shadow: none;
+  }
+  .stats{
+    margin-bottom: 50px;
+  }
+  .card_attacks{
+    height: 120px;
+    margin-right: 0;
+  }
+  h1{
+    margin-left: 0;
   }
 }
