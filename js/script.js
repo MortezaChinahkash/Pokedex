@@ -11,6 +11,9 @@ let maxStats = {
 };
 
 async function fetchUrls() {
+  // Show loading screen
+  showLoadingScreen();
+  
   for (let i = startIndex; i < lastIndex; i++) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
@@ -18,6 +21,9 @@ async function fetchUrls() {
     pokemonArray.push(currentJSON);
   }
   renderPkmCard();
+  
+  // Hide loading screen after data is loaded
+  hideLoadingScreen();
 }
 
 function renderPkmCard() {
@@ -71,10 +77,7 @@ function closeOverlay() {
 }
 
 function addMorePokemon() {
-  loadMorePkmnLS();
-  startIndex = lastIndex;
-  lastIndex += 20;
-  fetchUrls();
+  loadMorePokemon();
 }
 
 function previousPkmn(i) {
@@ -89,24 +92,38 @@ function nextPkmn(i) {
   updateOverlay(newIndex, pokeTypeBg);
 }
 
-function loadingScreen() {
-  setTimeout(() => {
-    const loader = document.getElementById("loader");
-    const content = document.getElementById("content");
-    loader.classList.add("d_none");
-    content.style.display = "flex";
-  }, 5000);
-}
-
-function loadMorePkmnLS() {
+function showLoadingScreen() {
   const loader = document.getElementById("loader");
   const content = document.getElementById("content");
   loader.classList.remove("d_none");
   content.style.display = "none";
-  setTimeout(() => {
-    loader.classList.add("d_none");
-    content.style.display = "flex";
-  }, 5000);
+}
+
+function hideLoadingScreen() {
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+  loader.classList.add("d_none");
+  content.style.display = "flex";
+}
+
+async function loadMorePokemon() {
+  // Show loading screen
+  showLoadingScreen();
+  
+  startIndex = lastIndex;
+  lastIndex += 20;
+  
+  // Load more Pokemon
+  for (let i = startIndex; i < lastIndex; i++) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    let response = await fetch(url);
+    let currentJSON = await response.json();
+    pokemonArray.push(currentJSON);
+  }
+  renderPkmCard();
+  
+  // Hide loading screen after data is loaded
+  hideLoadingScreen();
 }
 
 function addTypeBg(pokeTypeBg, pokeCardIndex) {
