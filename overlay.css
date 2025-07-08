@@ -392,3 +392,28 @@ th {
   align-items: flex-start;
   justify-content: center;
 }
+@media (max-width: 768px) {
+  .stats_button{
+    gap: 0px;
+    flex-direction: column;
+  }
+  .img_btn{
+    align-self: flex-start;
+  }
+  h1{
+    flex: 0;
+  }
+  .stats{
+    flex: 0;
+  }
+  .pokemon_info{
+    min-height: auto;
+    margin-bottom: 0;
+  }
+  .pokemon_left_side{
+    min-height: auto;
+  }
+  .pokemon_right_side{
+    min-height: auto;
+  }
+}
