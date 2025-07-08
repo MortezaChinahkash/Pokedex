@@ -10,15 +10,17 @@ function updateOverlayHTMLTemplate(i, pokeTypeBg){
             <img class="img_btn" onclick="closeOverlay()" src="./assets/png/close.svg">
         </div>
         <div class="pokemon_info">
-            <div class="flex_column">
+            <div class="pokemon_left_side">
                 <h1>${pokemonArray[i].name}</h1>
                 <div class="pokemon_card_bg">
                     <img class="pkmn_overlay" src=${pokemonArray[i].sprites.other.showdown.front_shiny}>
                 </div>
             </div>
-            <div>
+            <div class="pokemon_right_side">
                 <h1 class="stats">Pokemon Stats</h1>
-                <div id="differentStats"></div>
+                <div class="stats_content_wrapper">
+                    <div id="differentStats"></div>
+                </div>
             </div>
         </div>
         <div class="types_scream">
