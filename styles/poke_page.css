@@ -18,19 +18,38 @@
 }
 .poke_card {
   width: 200px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   text-align: center;
-  padding: 16px;
+  padding: 20px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  margin: 8px;
+  position: relative;
+  overflow: hidden;
 }
 .poke_card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 64px 0 rgba(31, 38, 135, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+.poke_card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+.poke_card:hover::before {
+  left: 100%;
 }
 .poke_card img {
   width: 100px;
@@ -40,88 +59,98 @@
 }
 .poke_card h3 {
   font-size: 20px;
-  color: #333;
+  color: #ffffff;
   margin: 8px 0;
   text-transform: capitalize;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .poke_card p {
   font-size: 14px;
-  color: #333333;
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
+  font-weight: 500;
 }
 .type_text p {
   font-size: 14px;
-  color: #1b1b1b;
+  color: rgba(255, 255, 255, 0.95);
   margin: 0;
   text-transform: capitalize;
-  font-weight: bold;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 .btn {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   position: relative;
   font-size: 14px;
+  font-weight: 600;
   color: #fff;
-  background: linear-gradient(to bottom, #d00000, #a00000);
-  border: 3px solid #000;
-  padding: 8px 24px;
-  border-radius: 8px;
-  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 28px;
+  border-radius: 25px;
+  text-transform: none;
   cursor: pointer;
-  text-shadow: 1px 1px #000;
-  box-shadow: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   overflow: hidden;
   z-index: 1;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
 }
 .btn:active {
-  box-shadow: none;
-  transform: translateY(2px);
+  transform: translateY(0);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.4);
 }
 .btn::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -75%;
-  width: 50%;
+  left: -100%;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  transform: skewX(-20deg);
-  animation: shine 2.5s infinite ease-in-out;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
   z-index: 2;
 }
-@keyframes shine {
-  0% {
-    left: -75%;
-  }
-  100% {
-    left: 130%;
-  }
+.btn:hover::after {
+  left: 100%;
 }
+
 .show_more {
   margin: 20px;
 }
 .input {
-  font-size: 12px;
-  padding: 10px 15px;
-  border: 3px solid #000;
-  border-radius: 6px;
-  background-color: #f0f0f0;
-  color: #111;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 15px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #fff;
   outline: none;
-  box-shadow: inset 2px 2px #ccc;
-  width: 250px;
-  text-transform: uppercase;
-  transition: 0.2s ease-in-out;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  width: 280px;
+  text-transform: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 .input:focus {
-  background-color: #fff;
-  border-color: #ee8130;
-  box-shadow: 0 0 8px #ee8130;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 .search-container {
   display: flex;
@@ -131,29 +160,33 @@
   margin: 20px;
 }
 .retro-footer {
-  background: linear-gradient(to top, #aaa, #ddd);
-  color: #111;
-  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
   text-align: center;
-  border-top: 4px solid #333;
-  font-family: monospace;
-  font-size: 12px;
-  text-transform: uppercase;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 -8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 .pl_btm {
   margin-right: 10px;
 }
 .retro-footer p {
   margin: 0;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px #fff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .hint-text {
   font-style: italic;
-  color: rgb(255, 0, 0);
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
   margin-top: 20px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 24px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
