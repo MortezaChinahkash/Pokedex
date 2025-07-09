@@ -38,6 +38,24 @@
   box-shadow: 0 16px 64px 0 rgba(31, 38, 135, 0.5);
   background: rgba(255, 255, 255, 0.15);
 }
+
+/* Light theme specific hover styles */
+body.light-theme .poke_card:hover {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.15);
+  color: #2d3748;
+}
+
+body.light-theme .poke_card:hover h3,
+body.light-theme .poke_card:hover p {
+  color: #2d3748;
+  text-shadow: none;
+}
+
+/* Light theme animation fix */
+body.light-theme .poke_card::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
 .poke_card::before {
   content: '';
   position: absolute;
@@ -266,11 +284,6 @@ body {
   color: var(--text-color);
 }
 
-.poke_card:hover {
-  background: var(--glass-bg);
-  filter: brightness(1.1);
-}
-
 .theme-toggle {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -304,4 +317,28 @@ header {
   .btn{
     width: 100px;
   }
+}
+
+/* Light theme button hover fix */
+body.light-theme .btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3748;
+}
+
+/* Light theme text colors */
+body.light-theme .poke_card h3,
+body.light-theme .poke_card p {
+  color: #2d3748;
+  text-shadow: none;
+}
+
+body.light-theme .hint-text {
+  color: #2d3748;
+  text-shadow: none;
 }
