@@ -1,3 +1,11 @@
+/**
+ * Generates HTML template for the Pokemon detail overlay modal
+ * Creates the complete overlay structure with navigation, stats, and controls
+ * @function updateOverlayHTMLTemplate
+ * @param {number} i - Index of the Pokemon in the pokemonArray
+ * @param {string} pokeTypeBg - Primary Pokemon type for background styling
+ * @returns {string} HTML string for the overlay modal
+ */
 function updateOverlayHTMLTemplate(i, pokeTypeBg){
     return  `
     <div class="overlay_innerwindow" id="overlayInnerWindow" onclick="event.stopPropagation()">
@@ -36,6 +44,15 @@ function updateOverlayHTMLTemplate(i, pokeTypeBg){
 `;
 }
 
+/**
+ * Generates HTML template for a Pokemon card
+ * Creates the card structure with image, name, ID, and type container
+ * @function renderPkmCardHTMLTemplate
+ * @param {number} i - Index of the Pokemon in the pokemonArray
+ * @param {string} typeID - Unique ID for the type container element
+ * @param {string} pokeCardIndex - Unique ID for the Pokemon card element
+ * @returns {string} HTML string for the Pokemon card
+ */
 function renderPkmCardHTMLTemplate(i, typeID, pokeCardIndex){
     return  `
     <div onclick="renderOverlay(${i})" id="${pokeCardIndex}" class="poke_card">
@@ -46,6 +63,14 @@ function renderPkmCardHTMLTemplate(i, typeID, pokeCardIndex){
     </div>`;
 }
 
+/**
+ * Generates HTML template for Pokemon general statistics table
+ * Creates a table with basic Pokemon information
+ * @function renderGeneralStatsHTMLTemplate
+ * @param {number} i - Index of the Pokemon in the pokemonArray
+ * @param {string} formattedWeight - Formatted weight string with decimal
+ * @returns {string} HTML string for the general stats table
+ */
 function renderGeneralStatsHTMLTemplate(i, formattedWeight) {
     return  `
     <div class="card">
@@ -75,6 +100,15 @@ function renderGeneralStatsHTMLTemplate(i, formattedWeight) {
     `;
 }
 
+/**
+ * Generates HTML template for a progress bar used in base stats
+ * Creates a progress bar with label and container for visual stat representation
+ * @function renderProgressbarHTMLTemplate
+ * @param {string} statName - Name of the Pokemon stat (e.g., 'hp', 'attack')
+ * @param {number} baseValue - Current value of the stat
+ * @param {number} maxValue - Maximum possible value for this stat type
+ * @returns {string} HTML string for the progress bar
+ */
 function renderProgressbarHTMLTemplate(statName, baseValue, maxValue) {
     return  `
     <div class="progress_bar_container">
@@ -85,6 +119,15 @@ function renderProgressbarHTMLTemplate(statName, baseValue, maxValue) {
     </div>`;
 }
 
+/**
+ * Generates HTML template for Pokemon cards in search results
+ * Creates a card structure similar to regular cards but with search-specific functionality
+ * @function findPokemonHTMLTemplate
+ * @param {Object} p - Pokemon object from search results
+ * @param {string} cardId - Unique ID for the card element
+ * @param {string} typeId - Unique ID for the type container element
+ * @returns {string} HTML string for the search result Pokemon card
+ */
 function findPokemonHTMLTemplate(p, cardId, typeId) {
     return `
           <div onclick="renderOverlayFromFilter(${p.id})" id="${cardId}" class="poke_card">
