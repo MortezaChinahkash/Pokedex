@@ -16,8 +16,7 @@
  * Application initialization
  * This is the main entry point that gets called when the page loads
  */
-console.log('Pokemon application loaded successfully');
-console.log('All modules are available and ready to use');
+
 
 // The fetchUrls() function from pokemonData.js will be called by the onload event in index.html
 // All other functions are event-driven through user interactions
